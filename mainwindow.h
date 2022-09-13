@@ -25,6 +25,8 @@ public:
 
 private slots:
     void displayTimes();
+    void displayConvertedTimestamp();
+    void onShowCurrentTimestamp();
 
 private:
     Ui::MainWindow *ui;

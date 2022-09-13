@@ -38,6 +38,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
     ui->tableView->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
 
+    ui->timestampConvertedLineEdit->setReadOnly(true);
+
+    connect(ui->timestampSpinBox, &QSpinBox::valueChanged, this,
+            &MainWindow::displayConvertedTimestamp);
+
+    connect(ui->currentTimestampPushButton, &QPushButton::clicked, this,
+            &MainWindow::onShowCurrentTimestamp);
+
+    onShowCurrentTimestamp();
     QTimer::singleShot(0, this, [this]() { adjustSize(); });
 }
 
@@ -50,4 +59,17 @@ void MainWindow::displayTimes()
 {
     const auto date = ui->dateEdit->date();
     m_model->setDate(date, m_column);
+}
+
+void MainWindow::displayConvertedTimestamp()
+{
+    const auto timestamp = ui->timestampSpinBox->value();
+    const auto dt = QDateTime::fromSecsSinceEpoch(timestamp);
+    ui->timestampConvertedLineEdit->setText(dt.toString("yyyy-MM-dd hh:mm:ss"));
+}
+
+void MainWindow::onShowCurrentTimestamp()
+{
+    const auto timestamp = QDateTime::currentSecsSinceEpoch();
+    ui->timestampSpinBox->setValue(timestamp);
 }

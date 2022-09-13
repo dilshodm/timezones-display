@@ -18,6 +18,27 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
+       <widget class="QPushButton" name="currentTimestampPushButton">
+        <property name="text">
+         <string>Current Timestamp</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="timestampSpinBox">
+        <property name="maximum">
+         <number>2147483647</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="timestampConvertedLineEdit"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
        <widget class="QDateEdit" name="dateEdit"/>
       </item>
       <item>
